@@ -20,7 +20,7 @@ test_requirements = [
 
 setup(
     name='pixel',
-    version='0.2.0',
+    version='0.2.1',
     description="pixel",
     long_description=readme + '\n\n' + history,
     author="Ignacio Tartavull",

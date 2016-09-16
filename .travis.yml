@@ -2,7 +2,7 @@
 deploy:
   true:
     condition: $TRAVIS_PYTHON_VERSION == "2.7"
-    repo: tartavull/tigertrace
+    repo: tartavull/pixel
     tags: true
   distributions: sdist bdist_wheel
   password:
