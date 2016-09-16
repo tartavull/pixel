@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import os
 import tornado.ioloop
 import tornado.web as web
@@ -25,6 +27,6 @@ def start_server():
           port += 1
       else:
           break
-    print 'Serving on port', port
+    print('Serving on port', port)
     webbrowser.open('http://localhost:{}'.format(port))
     tornado.ioloop.IOLoop.instance().start()

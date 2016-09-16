@@ -1,6 +1,13 @@
 pixel package
 =============
 
+Subpackages
+-----------
+
+.. toctree::
+
+    pixel.backend
+
 Submodules
 ----------
 

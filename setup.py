@@ -20,14 +20,14 @@ test_requirements = [
 
 setup(
     name='pixel',
-    version='0.2.1',
+    version='0.3.0',
     description="pixel",
     long_description=readme + '\n\n' + history,
     author="Ignacio Tartavull",
     author_email='tartavull@gmail.com',
     url='https://github.com/tartavull/pixel',
     packages=[
-        'pixel',
+        'pixel','pixel.backend','pixel.frontend'
     ],
     package_dir={'pixel':
                  'pixel'},
@@ -35,6 +35,10 @@ setup(
         'console_scripts': [
             'pixel=pixel.cli:main'
         ]
+    },
+    package_data = {
+        # If any package contains *.txt or *.rst files, include them:
+        '': ['*.txt', '*.xml', '*.html', '*.js']
     },
     include_package_data=True,
     install_requires=requirements,
