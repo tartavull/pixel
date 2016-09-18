@@ -9,3 +9,5 @@ def display_segmentation(arr):
 
 def display_affinities(arr):
   start_server()
+
+

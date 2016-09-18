@@ -1,25 +1,23 @@
-from __future__ import print_function
-
 import os
 import tornado.ioloop
 import tornado.web as web
 import webbrowser
 import SocketServer
 
-class MainHandler(tornado.web.RequestHandler):
-    def get(self):
-        self.render('../frontend/index.html')
+def create_app(tmpfolder):
+  handlers = [
+    (r'/images/(.*)', web.StaticFileHandler, 
+      {'path': tmpfolder}),
+    (r'/(.*)', web.StaticFileHandler, 
+      {'path': os.path.join(os.path.dirname(__file__), '../frontend'),
+       "default_filename": "index.html"}),
+  ]
+  settings = {'debug':False,}
+  return web.Application(handlers, **settings)
 
-handlers = [
-  (r'/frontend/(.*)', web.StaticFileHandler, {'path': os.path.join(os.path.dirname(__file__), '../../frontend/')}),
-  (r'/', MainHandler)
-]
-
-settings = {'debug':True,}
-application = web.Application(handlers, **settings)
-
-def start_server():
+def start_server(tmpfolder):
     port = 8000
+    application = create_app(tmpfolder)
     while True:
       try:
           application.listen(port)
@@ -27,6 +25,6 @@ def start_server():
           port += 1
       else:
           break
-    print('Serving on port', port)
+    print 'Serving on port', port
     webbrowser.open('http://localhost:{}'.format(port))
     tornado.ioloop.IOLoop.instance().start()
