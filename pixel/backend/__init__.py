@@ -3,11 +3,12 @@ import tornado.ioloop
 import tornado.web as web
 import webbrowser
 import SocketServer
+import json
 
-def create_app(tmpfolder):
+def create_app(tmp_path):
   handlers = [
     (r'/images/(.*)', web.StaticFileHandler, 
-      {'path': tmpfolder}),
+      {'path': tmp_path}),
     (r'/(.*)', web.StaticFileHandler, 
       {'path': os.path.join(os.path.dirname(__file__), '../frontend'),
        "default_filename": "index.html"}),
@@ -15,9 +16,9 @@ def create_app(tmpfolder):
   settings = {'debug':False,}
   return web.Application(handlers, **settings)
 
-def start_server(tmpfolder):
+def start_server(tmp_path):
     port = 8000
-    application = create_app(tmpfolder)
+    application = create_app(tmp_path)
     while True:
       try:
           application.listen(port)

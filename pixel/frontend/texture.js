@@ -31,6 +31,10 @@ function create_infinite_canvas(height, width) {
   viewer.setZ = function(delta_z) {
     //TODO check for max or min z
     viewer.z += delta_z;
+    if (viewer.z == -1) {
+      viewer.z = 0
+      return
+    }
     viewer.addTiledImage({
       tileSource: "images/" + viewer.z + ".dzi",
       x: 0,
@@ -74,14 +78,14 @@ function create_infinite_canvas(height, width) {
     //     data[i+2]     = data[i+3];  // blue
     //     data[i+3]     = 255;
     // }
-    //Display segmentation
+    // Display segmentation
     // for (var i = 0; i < data.length; i += 4) {
     //     data[i]       = data[i];  // red
     //     data[i+1]     = data[i+1];  // green
     //     data[i+2]     = data[i+2];  // blue
     //     data[i+3]     = 255;
     // }
-    //Display both
+    // Display both
     // var p = 0.8;
     // for (var i = 0; i < data.length; i += 4) {
     //     data[i]       = data[i+3] * p + data[i] * (1-p);  // red
